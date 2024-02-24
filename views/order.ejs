@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>상품구매</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            background-image: url('images/4.jpg');
+            background-size: cover;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .card {
+            background-color: rgba(51, 44, 32, 0.6);
+            border: none;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px) scale(0.98);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-img-top {
+            width: 100%;
+            object-fit: contain;
+            object-position: center;
+            background-size: cover;
+            display: block;
+        }
+
+        .card .card-img-container {
+            width: 100%;
+            padding-top: 100%;
+            position: relative;
+        }
+
+        .card .card-img-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 100%;
+        }
+
+
+
+        .card-body {
+            color: #fff;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px black;
+        }
+
+        .btn-success {
+            background-color: #48532d;
+            color: white;
+            border: none;
+            display: block;
+            width: 80%;
+            margin: 20px auto 0;
+            padding: 10px 0;
+            border-radius: 25px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-success:hover,
+        .btn-success:focus {
+            background-color: #2e2928;
+            color: #FFF;
+            text-decoration: none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-light fixed-top navbar-expand-lg">
+            <a class="navbar-brand" href="/signin" style="margin-left: 50px;">
+                <br>
+                <img src="/images/logo.png" alt="TousLesJours Logo" style="height: 160px;">
+            </a>
+    </nav>
+    <section class="vh-100">
+        <div class="container py-5 h-100">
+            <div class="row justify-content-center align-items-center h-100">
+                <div class="col-12">
+                    <div class="text-center text-white mb-5">
+                        <h2 class="mb-0" style="color: rgb(255, 255, 255); font-weight:bold">Product List</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card shadow-sm border-0 rounded">
+                                <div class="card-img-container">
+                                    <img src="/images/malcha.jpg" class="card-img-top" alt="Product Image">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title" style="color: rgb(203, 180, 98); font-size: 17px; font-weight:bold;">Layered Matcha Fondant</h5>
+                                    <p class="card-text">Category: Matcha</p>
+                                    <button type="button" class="btn btn-success">Order</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card shadow-sm border-0 rounded">
+                                <div class="card-img-container">
+                                    <img src="/images/blackmalcha.jpg" class="card-img-top" alt="Product Image">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title" style="color: rgb(203, 180, 98); font-size: 17px; font-weight:bold;">Black Cookie with Real Matcha Cream</h5>
+                                    <p class="card-text">Category: Matcha</p>
+                                    <button type="button" class="btn btn-success">Order</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card shadow-sm border-0 rounded">
+                                <div class="card-img-container">
+                                    <img src="/images/corncheese.jpg" class="card-img-top" alt="Product Image">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title" style="color: rgb(203, 180, 98); font-size: 17px; font-weight:bold;">Crispy Condensed Milk Corn Cheese</h5>
+                                    <p class="card-text">Category: Corn</p>
+                                    <button type="button" class="btn btn-success">Order</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card shadow-sm border-0 rounded">
+                                <div class="card-img-container">
+                                    <img src="/images/goroke.png" class="card-img-top" alt="Product Image">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title" style="color: rgb(203, 180, 98); font-size: 17px; font-weight:bold;">NEW Kimchi Croquette</h5>
+                                    <p class="card-text">Category: Croquette</p>
+                                    <button type="button" class="btn btn-success">Order</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card shadow-sm border-0 rounded">
+                                <div class="card-img-container">
+                                    <img src="/images/goroke.png" class="card-img-top" alt="Product Image">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title" style="color: rgb(203, 180, 98); font-size: 17px; font-weight:bold;">NEW Spicy Croquette</h5>
+                                    <p class="card-text">Category: Croquette</p>
+                                    <button type="button" class="btn btn-success">Order</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="card shadow-sm border-0 rounded">
+                                <div class="card-img-container">
+                                    <img src="/images/goroke.png" class="card-img-top" alt="Product Image">
+                                </div>
+                                <div class="card-body text-center">
+                                    <h5 class="card-title" style="color: rgb(203, 180, 98); font-size: 17px; font-weight:bold;">NEW Fire Chicken Croquette</h5>
+                                    <p class="card-text">Category: Croquette</p>
+                                    <button type="button" class="btn btn-success">Order</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="/js/order.js"></script>
+</body>
+
+</html>=

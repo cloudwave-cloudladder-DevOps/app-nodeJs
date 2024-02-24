@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <title>CloudLadder - Sign Up</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-light fixed-top navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="/signin">
+                <br>
+                <img src="/images/logo.png" alt="TousLesJours Logo" style="height: 160px;">
+            </a>
+        </div>
+    </nav>
+    <img src="/images/3.jpg" class="d-block w-100">
+    <div class="carousel-caption" style="bottom: 20%;">
+        <div class="containerlogin">
+            <br>
+            <h2 style="font-weight: bold; font-size: 40px; color: rgb(255, 255, 255)">Sign-Up</h2>
+            <form id="signupForm">
+                <div class="form-item">
+                    <span class="material-icons-outlined">
+                        account_circle
+                    </span>
+                    <input type="text" name="userName" id="userName" placeholder="name" required>
+                </div>
+                <br>
+                <div class="form-item">
+                    <span class="material-icons-outlined">
+                        phone
+                    </span>
+                    <input type="text" name="userPhone" id="userPhone" placeholder="phone-number" required>
+                </div>
+                <br>
+                <div class="form-item">
+                    <span class="material-icons-outlined">
+                        lock
+                    </span>
+                    <input type="password" name="userPw" id="userPw" placeholder="password" required>
+                </div>
+                <br>
+                <button type="submit" style="border-radius: 15px;">Register</button>
+                <div class="signin-link">
+                    <br>
+                    <a href="/signin" style="font-size: 24px; font-weight: bold; color:rgb(253, 247, 236);">Sign-In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <script src="/js/signup.js"></script>
+</body>
+</html>
