@@ -90,9 +90,9 @@ app.post('/send-order', async (req, res) => {
 //     res.send('Hello World!');
 // });
   
-app.get('/healthz', (req, res) => {
-    res.status(200).send('OK');
-});
+// app.get('/healthz', (req, res) => {
+//    res.status(200).send('OK');
+// });
 
 app.listen(3000, () => {
     console.log('서버가 실행 중입니다. 3000 포트로!');
