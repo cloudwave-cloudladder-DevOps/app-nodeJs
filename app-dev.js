@@ -99,6 +99,7 @@ app.post('/send-order', async (req, res) => {
     } catch (error) {
         console.error('spring 서비스 요청 실패:', error);
         res.status(500).json({ message: 'Spring 서비스 요청 실패' });
+        
     }
 });
 
