@@ -41,7 +41,7 @@ jobs:
           push: true
           tags: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
 
-      - name: Get verion
+      - name: Get version
         id: image
         run: |
           VERSION=$(echo ${{ github.sha }} | cut -c1-8)
