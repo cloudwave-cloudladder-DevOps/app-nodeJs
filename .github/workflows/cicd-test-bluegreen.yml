@@ -2,9 +2,7 @@ name: Node Project
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ] 
+    branches: dev
  
 env:
   AWS_REGION: ap-northeast-2
