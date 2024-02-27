@@ -3,8 +3,8 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const pool = require('./db');
 
-require('dotenv').config();
-const spring = process.env.SPRING_ORDER_LB_SERVICE_HOST;
+// require('dotenv').config();
+// const spring = process.env.SPRING_ORDER_LB_SERVICE_HOST;
 
 const http = require('http');
 const { hostname } = require('os');
@@ -88,7 +88,7 @@ app.post('/send-order', async (req, res) => {
     const { breadName, breadCategory } = req.body;
     
     try {
-        const springResponse = await axios.post(`http://${spring}/api/v1/order`, {
+        const springResponse = await axios.post(`http://spring-order-lb/api/v1/order`, {
             breadName,
             breadCategory
         }, {
