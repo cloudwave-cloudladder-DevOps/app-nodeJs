@@ -2,12 +2,29 @@ const express = require('express');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const pool = require('./db');
-const app = express();
-
-const spring = process.env.SPRING_ORDER_LB_SERVICE_HOST;
-
 
 require('dotenv').config();
+const spring = process.env.SPRING_ORDER_LB_SERVICE_HOST;
+
+const http = require('http');
+const { hostname } = require('os');
+
+const app = express();
+const router = express.Router();
+router.use((req, res, next) => {
+    res.header('Access-Control-Allow-Methods', 'GET');
+    next();
+});
+router.get('/health', (req, res) => {
+    const data = {
+      uptime: process.uptime(),
+      message: 'Ok',
+      date: new Date()
+    }
+    res.status(200).send(data);
+});
+app.use('/', router);
+
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -78,21 +95,27 @@ app.post('/send-order', async (req, res) => {
             headers: { 'Content-Type': 'application/json' }
         });
 
-        // Spring 서비스로부터의 응답을 클라이언트에 전달
         res.json(springResponse.data);
     } catch (error) {
-        console.error('Spring service request failed:', error);
+        console.error('spring 서비스 요청 실패:', error);
         res.status(500).json({ message: 'Spring 서비스 요청 실패' });
+        
     }
 });
 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!');
-// });
-  
-// app.get('/healthz', (req, res) => {
-//    res.status(200).send('OK');
-// });
+app.get('/hpa', (req, res) => {
+    let x = 0.0001;
+    let hostname = "";
+    for (i=0; i<=1000000; i++) {
+        x += Math.sqrt(x);
+    }
+    try {
+        hostname = "성공";
+    } catch (error) {
+        hostname = "실패";
+    }
+    res.send(hostname);
+});
 
 app.listen(3000, () => {
     console.log('서버가 실행 중입니다. 3000 포트로!');
