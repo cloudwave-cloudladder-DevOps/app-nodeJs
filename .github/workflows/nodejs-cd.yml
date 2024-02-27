@@ -1,18 +1,16 @@
-name: Dockerizing to Amazon ECR
+name: Node Project
 
 on:
-  push:       # 트리거
-    branches:
-      - main
+  push:
+    branches: dev
 
 env:
-  AWS_REGION: ap-northeast-2        # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: node_cloudladder         # set this to your Amazon ECR repository name
-
+  AWS_REGION: ap-northeast-2
+  ECR_REPOSITORY: node_cloudladder
 
 jobs:
-  deploy:
-    name: Deploy
+  ecr-build-push-and-deploy:
+    name: ecr-build-push-and-deploy
     runs-on: ubuntu-latest
     environment: production
 
@@ -30,16 +28,25 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
 
-      - name: Get ECR Image Tag
-        id: get-ecr-image-tag
+      - name: Docker Build and ECR Push
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
+
+      - name: Get verion
+        id: image
         run: |
-          TAG=$(aws ecr describe-images --repository-name ${{ env.ECR_REPOSITORY }} --query 'reverse(sort_by(imageDetails,&imagePushedAt))[0].imageTags[0]' --output text)
-          echo "The latest image tag is $TAG"
-          echo "::set-output name=TAG::$TAG"  
+          VERSION=$(echo ${{ github.sha }} | cut -c1-8)
+          echo VERSION=$VERSION
+          echo "::set-output name=version::$VERSION"
 
+      # kustomize 명령을 가져온다.
       - name: Setup Kustomize
         uses: imranismail/setup-kustomize@v1
 
@@ -47,19 +54,20 @@ jobs:
         uses: actions/checkout@v2
         with:
           # kubernetes 설정정보 저장소
-          repository: cloudwave-cloudladder-DevOps/gitOps-nodeJs  # repo
-          ref: main  # branch
-          # 다른 저장소에 push 하려면 Personal Access Token이 필요함
+          repository: cloudwave-cloudladder-DevOps/gitOps-nodeJs
+          ref: main
+          # 다른 저장소에 push 하려면 Personal Access Token이 필요.
           token: ${{ secrets.ACTION_TOKEN }}
-          path: gitOps-nodeJs # repo와 같은 이름으로 root 디렉토리 설정
+          path: gitOps-nodeJs
 
+      # 새 이미지 버전으로 파일 수정
       - name: Update Kubernetes resources
         run: |
           pwd
-          cd gitOps-nodeJs/overlay/prod
+          cd gitOps-nodeJs/overlay/dev
           echo \${{ steps.login-ecr.outputs.registry }}/\${{ env.ECR_REPOSITORY }}
-          echo \$${{ steps.login-ecr.outputs.registry }}/\${{ env.ECR_REPOSITORY }}:\${{ steps.get-ecr-image-tag.outputs.TAG }}
-          kustomize edit set image \${{ steps.login-ecr.outputs.registry }}/\${{ env.ECR_REPOSITORY }}=\${{ steps.login-ecr.outputs.registry }}/\${{ env.ECR_REPOSITORY }}:\${{ steps.get-ecr-image-tag.outputs.TAG }}
+          echo \${{ steps.login-ecr.outputs.registry }}/\${{ env.ECR_REPOSITORY }}:\${{ github.sha }}
+          kustomize edit set image \${{ steps.login-ecr.outputs.registry }}/\${{ env.ECR_REPOSITORY }}=\${{ steps.login-ecr.outputs.registry }}/\${{ env.ECR_REPOSITORY }}:\${{ github.sha }}
           cat kustomization.yaml
 
       # 수정된 파일 commit & push
@@ -68,5 +76,5 @@ jobs:
           cd gitOps-nodeJs
           git config --global user.email "haeun8701@gmail.com"
           git config --global user.name "hann0079"
-          git commit -am "deploy tested image container"
+          git commit -am "Update image tag"
           git push -u origin main
