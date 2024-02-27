@@ -2,7 +2,8 @@ name: Node Project
 
 on:
   push:
-    branches: develope
+    branches:
+      - develope
 
 env:
   AWS_REGION: ap-northeast-2
