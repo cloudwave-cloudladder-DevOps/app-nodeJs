@@ -1,6 +1,6 @@
 <div align="center">
   
-## CJ OLIVENETWORKS CLOUDWAVE 2 Project
+## CJ OliveNetworks CLOUDWAVE 2 Project
 
 <img width="300" alt="image" src="https://github.com/hann0079/cloudwave-node.js/assets/74645991/3b8f0ad4-9525-4ca0-8b1c-859ffad53db8">
 
