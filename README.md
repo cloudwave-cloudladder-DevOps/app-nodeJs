@@ -2,11 +2,14 @@
   
 ## CJ OliveNetworks CLOUDWAVE 2 Project
 
-<img width="300" alt="image" src="https://github.com/hann0079/cloudwave-node.js/assets/74645991/3b8f0ad4-9525-4ca0-8b1c-859ffad53db8">
+<img width="300" alt="image" src="https://github.com/cloudwave-cloudladder-DevOps/app-nodeJs/assets/74645991/e0e76079-3ec4-4f69-849e-a3c6bb7a9bbc">
+
 
 ## MSA - EKS
-<img width="676" alt="image" src="https://github.com/hann0079/cloudwave-node.js/assets/74645991/dfed037b-33c9-49d4-b9fd-d9f6b1fcce59">
+<img width="650" alt="image" src="https://github.com/cloudwave-cloudladder-DevOps/app-nodeJs/assets/74645991/4361bd6d-acd6-4491-bbfc-6d566c2dc041">
+
 
 ## MSA - Service Discovery
-<img width="586" alt="image" src="https://github.com/hann0079/cloudwave-node.js/assets/74645991/2e5c3291-37f5-432d-b7c5-19846ff690e8">
+<img width="650" alt="image" src="https://github.com/cloudwave-cloudladder-DevOps/app-nodeJs/assets/74645991/ea3f70f5-dec4-40de-9bda-df5f2c3f5199">
+
 </div>
